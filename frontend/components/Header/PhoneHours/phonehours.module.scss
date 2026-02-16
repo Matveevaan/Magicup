@@ -1,0 +1,30 @@
+// components/PhoneHours/phonehours.module.scss
+@import '../../../public/styles/_variables.scss';
+
+.phoneHours {
+    display: flex;
+    flex-direction: column;
+    gap: $spacing_xs;
+    
+    .phone {
+        a {
+            color: $color_brown;
+            font-weight: 600;
+            font-size: 18px;
+            text-decoration: none;
+            transition: color $transition_fast;
+            
+            &:hover {
+                color: darken($color_brown, 20%);
+                text-decoration: underline;
+            }
+        }
+    }
+    
+    .hours {
+        color: $color_brown;
+        font-size: 14px;
+        font-weight: 400;
+        line-height: 1.4;
+    }
+}

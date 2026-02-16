@@ -1,0 +1,72 @@
+// components/Header/header.module.scss
+@import "../../public/styles/_variables.scss";
+@import "../../public/styles/fonts.scss";
+
+.head {
+    background: $color_beige;
+    padding: 5px 0;
+}
+
+.logo {
+    width: 30px;
+    height: auto;
+    margin: 5px;
+    
+    @media (min-width: $breakpoint_desktop) {
+        width: 35px;
+    }
+}
+
+.nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+}
+
+.logo_name {
+    display: flex;
+    align-items: center;
+}
+
+.name {
+    font-family: Stieglitz, sans-serif;
+    color: $color_brown;
+    margin-top: 18px;
+    font-size: 30px;
+    
+    @media (min-width: $breakpoint_desktop) {
+        font-size: 35px;
+    }
+}
+
+/* Мобильная секция (экраны < 768px) */
+.mobileSection {
+    display: flex;
+    align-items: center;
+    gap: $spacing_md;
+    
+    @media (min-width: $breakpoint_tablet) {
+        display: none;
+    }
+}
+
+.userIconMobile {
+    display: flex;
+    align-items: center;
+}
+
+/* Десктопная секция (экраны > 768px) */
+.desktopSection {
+    display: none;
+    
+    @media (min-width: $breakpoint_tablet) {
+        display: flex;
+        align-items: center;
+        gap: $spacing_lg;
+    }
+}
+
+.userIconDesktop {
+    margin-left: $spacing_lg;
+}

@@ -1,0 +1,76 @@
+// frontend/app/about/about.module.scss
+@import '../../public/styles/_variables.scss';
+
+.aboutPage {
+  padding: $spacing_xl 0;
+  min-height: 100vh;
+  background: $color_bg_white;
+}
+
+.container {
+  max-width: $container_desktop;
+  margin: 0 auto;
+  padding: 0 $spacing_lg;
+  
+  @media (max-width: $breakpoint_tablet) {
+    padding: 0 $spacing_md;
+  }
+  
+  @media (max-width: $breakpoint_mobile) {
+    padding: 0 $spacing_sm;
+  }
+}
+
+.errorContainer,
+.inactiveContainer,
+.loadingContainer {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: $spacing_xl;
+  background: $color_bg_white;
+  
+  h1 {
+    font-size: 2rem;
+    color: $color_brown;
+    margin-bottom: $spacing_md;
+    font-weight: 600;
+    font-family: $font_family_main;
+    
+    @media (max-width: $breakpoint_mobile) {
+      font-size: 1.5rem;
+    }
+  }
+  
+  p {
+    font-size: 1.1rem;
+    color: $color_blue;
+    font-family: $font_family_main;
+    
+    @media (max-width: $breakpoint_mobile) {
+      font-size: 1rem;
+    }
+  }
+}
+
+.errorContainer {
+  h1 {
+    color: $color_red;
+  }
+}
+
+// Адаптивность
+@media (max-width: $breakpoint_tablet) {
+  .aboutPage {
+    padding: $spacing_lg 0;
+  }
+}
+
+@media (max-width: $breakpoint_mobile) {
+  .aboutPage {
+    padding: $spacing_md 0;
+  }
+}

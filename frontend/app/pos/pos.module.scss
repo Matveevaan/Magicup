@@ -1,0 +1,887 @@
+@import '../../public/styles/_variables.scss';
+
+.posContainer {
+  display: flex;
+  height: calc(100vh - 80px);
+  background: $color_bg_white;
+  font-family: $font_family_main;
+  overflow: hidden;
+}
+
+// Левая панель - меню
+.menuPanel {
+  flex: 2;
+  display: flex;
+  flex-direction: column;
+  background: $color_light;
+  border-right: 1px solid rgba($color_blue, 0.1);
+  overflow: hidden;
+}
+
+.menuHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: $spacing_sm;
+  background: $color_bg_darkblue;
+  color: $font_color_white;
+  
+  h1 {
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin: 0;
+  }
+}
+
+.cashierInfo {
+  display: flex;
+  align-items: center;
+  gap: $spacing_md;
+}
+
+.cashierName {
+  font-weight: 500;
+  background: rgba($color_light, 0.2);
+  padding: $spacing_xs $spacing_sm;
+  border-radius: $radius_sm;
+}
+
+.logoutButton {
+  padding: $spacing_xs $spacing_md;
+  background: rgba($color_light, 0.1);
+  border: 1px solid rgba($color_light, 0.3);
+  color: $font_color_white;
+  border-radius: $radius_sm;
+  cursor: pointer;
+  transition: all $transition_fast;
+  
+  &:hover {
+    background: rgba($color_light, 0.2);
+  }
+}
+
+// Поиск
+.searchSection {
+  padding: $spacing_sm;
+  border-bottom: 1px solid rgba($color_blue, 0.1);
+  position: relative;
+}
+
+.searchInput {
+  width: 100%;
+  padding: $spacing_xs $spacing_md;
+  border: 2px solid rgba($color_blue, 0.2);
+  border-radius: $radius_md;
+  font-size: 1rem;
+  transition: all $transition_fast;
+  
+  &:focus {
+    outline: none;
+    border-color: $color_brown;
+    box-shadow: 0 0 0 3px rgba($color_brown, 0.1);
+  }
+}
+
+.searchResults {
+  position: absolute;
+  top: calc(100% - 5px);
+  left: $spacing_md;
+  right: $spacing_md;
+  background: $color_light;
+  border: 1px solid rgba($color_blue, 0.2);
+  border-radius: $radius_md;
+  box-shadow: $shadow_medium;
+  max-height: 300px;
+  overflow-y: auto;
+  z-index: $z_dropdown;
+}
+
+.searchResultItem {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  padding: $spacing_sm $spacing_sm;
+  border: none;
+  background: none;
+  cursor: pointer;
+  transition: background $transition_fast;
+  
+  &:hover {
+    background: $color_white_blue;
+  }
+  
+  &:not(:last-child) {
+    border-bottom: 1px solid rgba($color_blue, 0.1);
+  }
+}
+
+.searchResultName {
+  font-weight: 500;
+  color: $color_brown;
+}
+
+.searchResultPrice {
+  color: $color_blue;
+  font-size: 0.9rem;
+}
+
+// Табы меню
+.menuTabs {
+  display: flex;
+  padding: $spacing_sm;
+  gap: $spacing_sm;
+  border-bottom: 1px solid rgba($color_blue, 0.1);
+  background: $color_bg_white;
+}
+
+.menuTab {
+  flex: 1;
+  padding: $spacing_sm;
+  background: none;
+  border: none;
+  border-radius: $radius_md;
+  font-size: 1rem;
+  font-weight: 500;
+  color: $color_blue;
+  cursor: pointer;
+  transition: all $transition_fast;
+  
+  &:hover {
+    background: $color_white_blue;
+    color: $color_brown;
+  }
+  
+  &.active {
+    background: $color_bg_darkblue;
+    color: $font_color_white;
+  }
+}
+
+// Сетка товаров
+.menuGrid {
+  flex: 1;
+  overflow-y: auto;
+  padding: $spacing_md;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  gap: $spacing_sm;
+  background: $color_bg_white;
+}
+
+.menuItem {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  height: 180px;
+  align-items: center;
+  padding: $spacing_sm;
+  background: $color_light;
+  border: 2px solid transparent;
+  border-radius: $radius_md;
+  box-shadow: $shadow_small;
+  cursor: pointer;
+  transition: all $transition_fast;
+  
+  &:hover:not(:disabled) {
+    transform: translateY(-2px);
+    box-shadow: $shadow_medium;
+    border-color: $color_brown;
+  }
+  
+  &:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+}
+
+.menuItemImage {
+  width: 80px;
+  height: 80px;
+  object-fit: cover;
+  border-radius: 50%;
+  margin-bottom: $spacing_sm;
+  border: 2px solid $color_white_blue;
+}
+
+.menuItemName {
+  font-weight: 600;
+  color: $color_brown;
+  text-align: center;
+  margin-bottom: $spacing_xs;
+  font-size: 0.9rem;
+}
+
+.menuItemPrice {
+  color: $color_blue;
+  font-size: 0.9rem;
+  font-weight: 500;
+}
+
+.variantBadge {
+  position: absolute;
+  top: $spacing_xs;
+  right: $spacing_xs;
+  background: $color_bg_darkblue;
+  color: $font_color_white;
+  font-size: 0.7rem;
+  padding: 2px 6px;
+  border-radius: $radius_sm;
+  font-weight: 600;
+}
+
+// Правая панель - корзина
+.cartPanel {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  background: $color_light;
+  border-left: 1px solid rgba($color_blue, 0.1);
+  overflow: hidden;
+}
+
+// Секция клиента
+.customerSection {
+  padding: $spacing_lg;
+  border-bottom: 1px solid rgba($color_blue, 0.1);
+  
+  h3 {
+    margin: 0 0 $spacing_sm 0;
+    color: $color_brown;
+    font-size: 1.1rem;
+  }
+}
+
+.barcodeInput {
+  display: flex;
+  gap: $spacing_sm;
+  
+  input {
+    flex: 1;
+    padding: $spacing_sm;
+    border: 2px solid rgba($color_blue, 0.2);
+    border-radius: $radius_sm;
+    font-size: 1rem;
+    font-family: monospace;
+    
+    &:focus {
+      outline: none;
+      border-color: $color_brown;
+    }
+  }
+  
+  button {
+    padding: $spacing_sm $spacing_md;
+    background: $color_bg_darkblue;
+    color: $font_color_white;
+    border: none;
+    border-radius: $radius_sm;
+    cursor: pointer;
+    transition: background $transition_fast;
+    
+    &:hover:not(:disabled) {
+      background: darken($color_bg_darkblue, 10%);
+    }
+    
+    &:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+  }
+}
+
+.customerError {
+  margin-top: $spacing_sm;
+  padding: $spacing_xs $spacing_sm;
+  background: rgba($color_red, 0.1);
+  color: $color_red;
+  border-radius: $radius_sm;
+  font-size: 0.9rem;
+}
+
+.customerInfo {
+  margin-top: $spacing_md;
+  padding: $spacing_sm;
+  background: $color_white_blue;
+  border-radius: $radius_md;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.customerName {
+  font-weight: 600;
+  color: $color_brown;
+}
+
+.customerPoints {
+  padding: $spacing_xs $spacing_sm;
+  background: $color_bg_darkblue;
+  color: $font_color_white;
+  border-radius: $radius_sm;
+  font-size: 0.9rem;
+}
+
+// Корзина
+.cartSection {
+  flex: 1;
+  overflow-y: auto;
+  padding: $spacing_lg;
+}
+
+.cartHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: $spacing_md;
+  
+  h3 {
+    margin: 0;
+    color: $color_brown;
+    font-size: 1.1rem;
+  }
+}
+
+.clearCart {
+  padding: $spacing_xs $spacing_sm;
+  background: none;
+  border: 1px solid rgba($color_red, 0.3);
+  color: $color_red;
+  border-radius: $radius_sm;
+  cursor: pointer;
+  font-size: 0.9rem;
+  transition: all $transition_fast;
+  
+  &:hover {
+    background: $color_red;
+    color: $font_color_white;
+  }
+}
+
+.emptyCart {
+  text-align: center;
+  padding: $spacing_xl;
+  color: rgba($color_blue, 0.5);
+  font-style: italic;
+}
+
+.cartItems {
+  display: flex;
+  flex-direction: column;
+  gap: $spacing_sm;
+}
+
+.cartItem {
+  display: grid;
+  grid-template-columns: 1fr auto auto auto auto;
+  gap: $spacing_sm;
+  align-items: center;
+  padding: $spacing_sm;
+  background: $color_white_blue;
+  border-radius: $radius_sm;
+  font-size: 0.9rem;
+}
+
+.cartItemInfo {
+  min-width: 0;
+}
+
+.cartItemName {
+  font-weight: 600;
+  color: $color_brown;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.cartItemVariant {
+  font-size: 0.8rem;
+  color: $color_blue;
+}
+
+.cartItemPrice {
+  color: $color_blue;
+  white-space: nowrap;
+}
+
+.cartItemQuantity {
+  display: flex;
+  align-items: center;
+  gap: $spacing_xs;
+}
+
+.quantityButton {
+  width: 24px;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: $color_light;
+  border: 1px solid rgba($color_blue, 0.2);
+  border-radius: $radius_sm;
+  cursor: pointer;
+  font-size: 1rem;
+  
+  &:hover {
+    background: $color_bg_darkblue;
+    color: $font_color_white;
+    border-color: $color_bg_darkblue;
+  }
+}
+
+.cartItemTotal {
+  font-weight: 600;
+  color: $color_brown;
+  white-space: nowrap;
+}
+
+.removeItem {
+  background: none;
+  border: none;
+  color: rgba($color_red, 0.5);
+  cursor: pointer;
+  font-size: 1.1rem;
+  
+  &:hover {
+    color: $color_red;
+  }
+}
+
+// Оформление
+.checkoutSection {
+  padding: $spacing_lg;
+  border-top: 2px solid rgba($color_brown, 0.1);
+  background: $color_light;
+}
+
+.pointsSection {
+  margin-bottom: $spacing_md;
+}
+
+.pointsCheckbox {
+  display: flex;
+  align-items: center;
+  gap: $spacing_sm;
+  cursor: pointer;
+  
+  input {
+    width: 18px;
+    height: 18px;
+    cursor: pointer;
+  }
+  
+  span {
+    color: $color_brown;
+    font-weight: 500;
+  }
+}
+
+.pointsDiscount {
+  margin-top: $spacing_xs;
+  padding: $spacing_xs $spacing_sm;
+  background: rgba($color_white_blue, 0.5);
+  color: $color_blue;
+  border-radius: $radius_sm;
+  font-size: 0.9rem;
+}
+
+.totals {
+  margin-bottom: $spacing_lg;
+}
+
+.totalRow {
+  display: flex;
+  justify-content: space-between;
+  padding: $spacing_xs 0;
+  color: $color_blue;
+  
+  &.finalRow {
+    padding: $spacing_sm 0;
+    margin-top: $spacing_sm;
+    border-top: 2px solid rgba($color_brown, 0.1);
+    font-weight: 700;
+    color: $color_brown;
+    font-size: 1.2rem;
+  }
+}
+
+.pointsEarned {
+  text-align: right;
+  padding: $spacing_sm;
+  background: $color_white_blue;
+  border-radius: $radius_sm;
+  color: $color_blue;
+  font-weight: 500;
+  font-size: 0.9rem;
+}
+
+.paymentButtons {
+  display: flex;
+  gap: $spacing_sm;
+}
+
+.payButton {
+  flex: 2;
+  padding: $spacing_lg;
+  background: $color_bg_darkblue;
+  color: $font_color_white;
+  border: none;
+  border-radius: $radius_md;
+  font-size: 1.2rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background $transition_fast;
+  
+  &:hover:not(:disabled) {
+    background: darken($color_bg_darkblue, 10%);
+  }
+  
+  &:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+}
+
+.quickPayButton {
+  flex: 1;
+  padding: $spacing_lg $spacing_sm;
+  background: $color_blue;
+  color: $font_color_white;
+  border: none;
+  border-radius: $radius_md;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background $transition_fast;
+  
+  &:hover:not(:disabled) {
+    background: darken($color_blue, 10%);
+  }
+  
+  &:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+}
+
+// Чек
+.receipt {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 350px;
+  background: $color_light;
+  border-radius: $radius_lg;
+  box-shadow: $shadow_large;
+  z-index: $z_modal;
+  animation: slideIn 0.3s ease-out;
+}
+
+.receiptHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: $spacing_md;
+  background: $color_bg_darkblue;
+  color: $font_color_white;
+  border-radius: $radius_lg $radius_lg 0 0;
+  
+  h4 {
+    margin: 0;
+    font-size: 1.1rem;
+  }
+  
+  button {
+    background: none;
+    border: none;
+    color: $font_color_white;
+    font-size: 1.2rem;
+    cursor: pointer;
+  }
+}
+
+.receiptBody {
+  padding: $spacing_lg;
+  
+  p {
+    margin: $spacing_sm 0;
+    color: $color_blue;
+  }
+}
+
+.receiptTime {
+  text-align: center;
+  font-size: 0.8rem;
+  color: rgba($color_blue, 0.5);
+  margin-top: $spacing_md;
+}
+
+// Модальное окно выбора объема
+.modalOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: $z_modal;
+}
+
+.variantModal {
+  background: $color_light;
+  border-radius: $radius_lg;
+  width: 90%;
+  max-width: 500px;
+  max-height: 80vh;
+  overflow: hidden;
+  box-shadow: $shadow_large;
+  animation: slideIn 0.3s ease-out;
+}
+
+.modalHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: $spacing_lg;
+  background: $color_bg_darkblue;
+  color: $font_color_white;
+  
+  h3 {
+    margin: 0;
+    font-size: 1.2rem;
+  }
+}
+
+.modalClose {
+  background: none;
+  border: none;
+  color: $font_color_white;
+  font-size: 1.2rem;
+  cursor: pointer;
+  padding: $spacing_xs;
+  
+  &:hover {
+    opacity: 0.8;
+  }
+}
+
+.modalBody {
+  padding: $spacing_lg;
+  max-height: calc(80vh - 130px);
+  overflow-y: auto;
+}
+
+.productInfo {
+  display: flex;
+  align-items: center;
+  gap: $spacing_md;
+  margin-bottom: $spacing_lg;
+  padding-bottom: $spacing_md;
+  border-bottom: 1px solid rgba($color_blue, 0.1);
+  
+  h4 {
+    margin: 0;
+    color: $color_brown;
+    font-size: 1.1rem;
+  }
+}
+
+.modalProductImage {
+  width: 60px;
+  height: 60px;
+  object-fit: cover;
+  border-radius: 50%;
+  border: 2px solid $color_white_blue;
+}
+
+.variantsList {
+  display: flex;
+  flex-direction: column;
+  gap: $spacing_sm;
+}
+
+.variantOption {
+  display: grid;
+  grid-template-columns: 1fr auto auto;
+  align-items: center;
+  gap: $spacing_md;
+  padding: $spacing_md;
+  background: $color_light;
+  border: 2px solid rgba($color_blue, 0.1);
+  border-radius: $radius_md;
+  cursor: pointer;
+  transition: all $transition_fast;
+  width: 100%;
+  
+  &:hover {
+    border-color: $color_brown;
+    background: $color_white_blue;
+  }
+  
+  &.selected {
+    border-color: $color_bg_darkblue;
+    background: rgba($color_bg_darkblue, 0.05);
+  }
+}
+
+.variantVolume {
+  font-weight: 500;
+  color: $color_brown;
+  text-align: left;
+}
+
+.variantPrice {
+  font-weight: 600;
+  color: $color_bg_darkblue;
+  white-space: nowrap;
+}
+
+.variantCalories {
+  font-size: 0.8rem;
+  color: $color_blue;
+  white-space: nowrap;
+}
+
+.modalFooter {
+  display: flex;
+  gap: $spacing_sm;
+  padding: $spacing_lg;
+  border-top: 1px solid rgba($color_blue, 0.1);
+  background: $color_white_blue;
+}
+
+.cancelButton {
+  flex: 1;
+  padding: $spacing_md;
+  background: none;
+  border: 2px solid rgba($color_blue, 0.2);
+  border-radius: $radius_md;
+  color: $color_blue;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all $transition_fast;
+  
+  &:hover {
+    background: rgba($color_blue, 0.1);
+  }
+}
+
+.addButton {
+  flex: 2;
+  padding: $spacing_md;
+  background: $color_bg_darkblue;
+  border: none;
+  border-radius: $radius_md;
+  color: $font_color_white;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background $transition_fast;
+  
+  &:hover:not(:disabled) {
+    background: darken($color_bg_darkblue, 10%);
+  }
+  
+  &:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+}
+
+// Анимации
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translate(-50%, -60%);
+  }
+  to {
+    opacity: 1;
+    transform: translate(-50%, -50%);
+  }
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+// Загрузка
+.loading {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  background: $color_bg_white;
+}
+
+.spinner {
+  width: 50px;
+  height: 50px;
+  border: 3px solid rgba($color_bg_darkblue, 0.1);
+  border-radius: 50%;
+  border-top-color: $color_bg_darkblue;
+  animation: spin 1s linear infinite;
+  margin-bottom: $spacing_md;
+}
+
+.loadingGrid {
+  grid-column: 1 / -1;
+  text-align: center;
+  padding: $spacing_xl;
+  color: $color_blue;
+}
+
+// Адаптивность
+@media (max-width: $breakpoint_desktop) {
+  .posContainer {
+    flex-direction: column;
+    height: auto;
+    min-height: 100vh;
+  }
+  
+  .menuPanel, .cartPanel {
+    flex: none;
+    height: auto;
+  }
+  
+  .cartPanel {
+    border-left: none;
+    border-top: 1px solid rgba($color_blue, 0.1);
+  }
+  
+  .menuGrid {
+    grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+    max-height: 400px;
+  }
+}
+
+@media (max-width: $breakpoint_mobile) {
+  .menuHeader {
+    flex-direction: column;
+    gap: $spacing_sm;
+    text-align: center;
+  }
+  
+  .cartItem {
+    grid-template-columns: 1fr;
+    gap: $spacing_sm;
+  }
+  
+  .paymentButtons {
+    flex-direction: column;
+  }
+  
+  .barcodeInput {
+    flex-direction: column;
+  }
+  
+  .customerInfo {
+    flex-direction: column;
+    gap: $spacing_sm;
+    text-align: center;
+  }
+}

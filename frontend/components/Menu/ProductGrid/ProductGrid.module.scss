@@ -1,0 +1,175 @@
+// frontend/components/Menu/ProductGrid/ProductGrid.module.scss
+@import '../../../public/styles/_variables.scss';
+
+.productGrid {
+  width: 100%;
+  margin-bottom: $spacing_sm;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.gridTitle {
+  font-size: 1.75rem;
+  color: $color_brown;
+  margin-bottom: $spacing_xl;
+  text-align: center;
+  font-family: $font_family_main;
+  font-weight: 600;
+  padding-bottom: $spacing_sm;
+  border-bottom: 2px solid $color_beige;
+  width: 100%;
+  
+  @media (max-width: $breakpoint_tablet) {
+    font-size: 1.5rem;
+    margin-bottom: $spacing_lg;
+  }
+  
+  @media (max-width: $breakpoint_mobile) {
+    font-size: 1.3rem;
+    margin-bottom: $spacing_md;
+  }
+}
+
+.groupSection {
+  width: 100%;
+  margin-bottom: $spacing_xl;
+  
+  &:last-child {
+    margin-bottom: 0;
+  }
+}
+
+.groupTitle {
+  font-size: 1.5rem;
+  color: $color_brown;
+  margin: 0 0 $spacing_md 0;
+  padding-bottom: $spacing_sm;
+  //border-bottom: 1px solid rgba($color_beige, 0.5);
+  font-family: $font_family_main;
+  font-weight: 600;
+  
+  @media (max-width: $breakpoint_tablet) {
+    font-size: 1.3rem;
+    margin-bottom: $spacing_sm;
+  }
+  
+  @media (max-width: $breakpoint_mobile) {
+    font-size: 1.2rem;
+  }
+}
+
+.groupDescription {
+  font-size: 1rem;
+  color: $color_blue;
+  margin: 0 0 $spacing_lg 0;
+  //line-height: 1.5;
+  font-family: $font_family_main;
+  
+  @media (max-width: $breakpoint_mobile) {
+    font-size: 0.9rem;
+    margin-bottom: $spacing_md;
+  }
+}
+
+.grid {
+  display: grid;
+  gap: 20px;
+  width: 100%;
+  align-items: stretch;
+  
+  /* Десктоп: 4 карточки */
+  grid-template-columns: repeat(4, 1fr);
+  
+  /* Планшет (768px-1024px): 3 карточки */
+  @media (max-width: $breakpoint_desktop) {
+    grid-template-columns: repeat(3, 1fr);
+  }
+  
+  /* Мобильные (<768px): 2 карточки */
+  @media (max-width: $breakpoint_mobile) {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 15px;
+  }
+  
+  /* Очень маленькие экраны (<480px): 1 карточка */
+  @media (max-width: 480px) {
+    grid-template-columns: 1fr;
+    max-width: 320px;
+    margin: 0 auto;
+  }
+}
+
+.gridItem {
+  height: 100%;
+  display: flex;
+  min-width: 0;
+}
+
+.emptyState {
+  text-align: center;
+  padding: $spacing_xxl;
+  background: $color_white_blue;
+  border-radius: $radius_lg;
+  box-shadow: $shadow_small;
+  margin: $spacing_xl auto;
+  max-width: 600px;
+  width: 100%;
+  
+  .emptyIcon {
+    font-size: 3.5rem;
+    color: rgba($color_brown, 0.2);
+    margin-bottom: $spacing_lg;
+  }
+  
+  .emptyTitle {
+    font-size: 1.5rem;
+    color: $color_brown;
+    margin-bottom: $spacing_sm;
+    font-weight: 600;
+    font-family: $font_family_main;
+  }
+  
+  .emptyText {
+    font-size: 1rem;
+    color: $color_blue;
+    max-width: 400px;
+    margin: 0 auto;
+    line-height: 1.5;
+    font-family: $font_family_main;
+  }
+  
+  @media (max-width: $breakpoint_tablet) {
+    padding: $spacing_xl $spacing_md;
+    margin: $spacing_lg auto;
+    
+    .emptyIcon {
+      font-size: 3rem;
+      margin-bottom: $spacing_md;
+    }
+    
+    .emptyTitle {
+      font-size: 1.3rem;
+    }
+    
+    .emptyText {
+      font-size: 0.95rem;
+    }
+  }
+  
+  @media (max-width: $breakpoint_mobile) {
+    padding: $spacing_lg $spacing_md;
+    
+    .emptyIcon {
+      font-size: 2.5rem;
+    }
+    
+    .emptyTitle {
+      font-size: 1.2rem;
+    }
+    
+    .emptyText {
+      font-size: 0.9rem;
+    }
+  }
+}

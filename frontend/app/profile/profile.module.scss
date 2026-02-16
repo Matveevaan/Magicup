@@ -1,0 +1,607 @@
+// app/profile/profile.module.scss
+@import '../../public/styles/variables.scss';
+
+.profilePage {
+  width: 100%;
+  min-height: calc(100vh - 200px);
+  padding: $spacing_xxl 0;
+  background: linear-gradient(135deg, $color_bg_white 0%, $color_white_blue 100%);
+  
+  @media (max-width: $breakpoint_tablet) {
+    padding: $spacing_xl 0;
+  }
+}
+
+// Шапка профиля
+.profileHeader {
+  display: flex;
+  align-items: center;
+  gap: $spacing_xl;
+  padding: $spacing_xl;
+  background: $color_bg_white;
+  border-radius: $radius_xl;
+  box-shadow: $shadow_small;
+  margin-bottom: $spacing_xl;
+  border: 1px solid rgba($color_blue, 0.1);
+  
+  @media (max-width: $breakpoint_tablet) {
+    flex-direction: column;
+    text-align: center;
+    gap: $spacing_md;
+    padding: $spacing_lg;
+  }
+}
+
+.avatar {
+  width: 100px;
+  height: 100px;
+  background: linear-gradient(135deg, $color_beige 0%, lighten($color_beige, 10%) 100%);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 42px;
+  font-weight: bold;
+  color: $color_brown;
+  flex-shrink: 0;
+  box-shadow: 0 $spacing_sm $spacing_xl rgba($color_beige, 0.3);
+  
+  @media (max-width: $breakpoint_tablet) {
+    width: 80px;
+    height: 80px;
+    font-size: 36px;
+  }
+}
+
+.userInfo {
+  flex: 1;
+  
+  h1 {
+    font-size: 1.75rem;
+    font-weight: 600;
+    color: $color_brown;
+    margin: 0 0 $spacing_xs 0;
+    font-family: $font_family_main;
+    
+    @media (max-width: $breakpoint_tablet) {
+      font-size: 1.5rem;
+    }
+  }
+}
+
+.userEmail {
+  color: $color_blue;
+  margin: 0 0 $spacing_md 0;
+  font-size: 0.95rem;
+  font-family: $font_family_main;
+}
+
+.stats {
+  display: flex;
+  align-items: center;
+  gap: $spacing_sm;
+  background: $color_white_blue;
+  padding: $spacing_sm $spacing_md;
+  border-radius: $radius_lg;
+  width: fit-content;
+  
+  @media (max-width: $breakpoint_tablet) {
+    margin: 0 auto;
+  }
+}
+
+.statItem {
+  display: flex;
+  align-items: baseline;
+  gap: $spacing_xs;
+}
+
+.statValue {
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: $color_brown;
+  font-family: $font_family_main;
+}
+
+.statLabel {
+  font-size: 0.85rem;
+  color: $color_blue;
+  font-weight: 500;
+  font-family: $font_family_main;
+}
+
+.statDivider {
+  color: rgba($color_blue, 0.3);
+  font-size: 1rem;
+}
+
+// Блоки
+.block {
+  background: $color_bg_white;
+  border-radius: $radius_xl;
+  padding: $spacing_xl;
+  margin-bottom: $spacing_lg;
+  box-shadow: $shadow_small;
+  border: 1px solid rgba($color_blue, 0.1);
+  
+  @media (max-width: $breakpoint_tablet) {
+    padding: $spacing_lg;
+  }
+  
+  @media (max-width: $breakpoint_mobile) {
+    padding: $spacing_md;
+  }
+}
+
+.blockHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: $spacing_lg;
+  padding-bottom: $spacing_md;
+  border-bottom: 2px solid $color_beige;
+  
+  h2 {
+    font-size: 1.3rem;
+    font-weight: 600;
+    color: $color_brown;
+    margin: 0;
+    font-family: $font_family_main;
+    
+    @media (max-width: $breakpoint_mobile) {
+      font-size: 1.2rem;
+    }
+  }
+}
+
+// Кнопки
+.editButton, .changeButton {
+  padding: $spacing_sm $spacing_lg;
+  background: linear-gradient(135deg, $color_beige 0%, $color_brown 100%);
+  color: $color_bg_white;
+  border: none;
+  border-radius: $radius_lg;
+  font-size: 0.95rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all $transition_normal;
+  font-family: $font_family_main;
+  
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba($color_beige, 0.3);
+  }
+  
+  @media (max-width: $breakpoint_mobile) {
+    padding: $spacing_xs $spacing_md;
+    font-size: 0.9rem;
+  }
+}
+
+// Информационная сетка
+.infoGrid {
+  display: flex;
+  flex-direction: column;
+  gap: $spacing_md;
+}
+
+.infoRow {
+  display: flex;
+  align-items: baseline;
+  padding: $spacing_sm 0;
+  border-bottom: 1px solid rgba($color_blue, 0.1);
+  
+  &:last-child {
+    border-bottom: none;
+  }
+  
+  @media (max-width: $breakpoint_mobile) {
+    flex-direction: column;
+    gap: $spacing_xs;
+  }
+}
+
+.infoLabel {
+  width: 120px;
+  font-size: 0.95rem;
+  color: $color_blue;
+  font-weight: 600;
+  font-family: $font_family_main;
+  
+  @media (max-width: $breakpoint_mobile) {
+    width: 100%;
+  }
+}
+
+.infoValue {
+  flex: 1;
+  font-size: 1rem;
+  color: $color_brown;
+  font-family: $font_family_main;
+}
+
+// Формы
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: $spacing_md;
+}
+
+.formGroup {
+  display: flex;
+  flex-direction: column;
+  gap: $spacing_xs;
+  
+  label {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: $color_brown;
+    font-family: $font_family_main;
+  }
+  
+  input {
+    padding: $spacing_md;
+    border: 2px solid rgba($color_beige, 0.5);
+    border-radius: $radius_lg;
+    font-size: 1rem;
+    transition: all $transition_normal;
+    background: $color_bg_white;
+    font-family: $font_family_main;
+    color: $color_dark;
+    
+    &:focus {
+      outline: none;
+      border-color: $color_beige;
+      box-shadow: 0 0 0 3px rgba($color_beige, 0.1);
+    }
+    
+    &::placeholder {
+      color: $color_blue;
+      opacity: 0.5;
+    }
+  }
+}
+
+.formActions {
+  display: flex;
+  gap: $spacing_md;
+  margin-top: $spacing_md;
+  
+  @media (max-width: $breakpoint_mobile) {
+    flex-direction: column;
+  }
+}
+
+.saveButton {
+  padding: $spacing_md $spacing_xl;
+  background: linear-gradient(135deg, $color_beige 0%, $color_brown 100%);
+  color: $color_bg_white;
+  border: none;
+  border-radius: $radius_lg;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all $transition_normal;
+  font-family: $font_family_main;
+  flex: 1;
+  
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba($color_beige, 0.3);
+  }
+}
+
+.cancelButton {
+  padding: $spacing_md $spacing_xl;
+  background: none;
+  border: 2px solid rgba($color_blue, 0.3);
+  border-radius: $radius_lg;
+  color: $color_blue;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all $transition_fast;
+  font-family: $font_family_main;
+  flex: 1;
+  
+  &:hover {
+    border-color: $color_blue;
+    background: rgba($color_blue, 0.05);
+  }
+}
+
+// Сообщения
+.message {
+  padding: $spacing_md $spacing_lg;
+  border-radius: $radius_lg;
+  margin-bottom: $spacing_lg;
+  font-size: 0.95rem;
+  font-family: $font_family_main;
+  
+  &.success {
+    background: linear-gradient(135deg, lighten(#28a745, 40%) 0%, lighten(#28a745, 35%) 100%);
+    color: #28a745;
+    border-left: 4px solid #28a745;
+  }
+  
+  &.error {
+    background: linear-gradient(135deg, lighten($color_red, 40%) 0%, lighten($color_red, 35%) 100%);
+    color: $color_red;
+    border-left: 4px solid $color_red;
+  }
+  
+  &.info {
+    background: linear-gradient(135deg, lighten($color_blue, 40%) 0%, lighten($color_blue, 35%) 100%);
+    color: $color_blue;
+    border-left: 4px solid $color_blue;
+  }
+}
+
+// История покупок
+.purchasesList {
+  display: flex;
+  flex-direction: column;
+  gap: $spacing_md;
+  margin-bottom: $spacing_lg;
+}
+
+.purchaseCard {
+  padding: $spacing_md;
+  background: $color_white_blue;
+  border-radius: $radius_lg;
+  border: 1px solid rgba($color_blue, 0.1);
+  transition: all $transition_fast;
+  
+  &:hover {
+    border-color: $color_beige;
+    box-shadow: $shadow_small;
+  }
+}
+
+.purchaseHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: $spacing_sm;
+}
+
+.purchaseDate {
+  font-size: 0.9rem;
+  color: $color_blue;
+  font-family: $font_family_main;
+}
+
+.purchaseTotal {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: $color_brown;
+  font-family: $font_family_main;
+}
+
+.purchaseDetails {
+  display: flex;
+  gap: $spacing_lg;
+  font-size: 0.85rem;
+  color: rgba($color_blue, 0.8);
+  font-family: $font_family_main;
+  
+  @media (max-width: $breakpoint_mobile) {
+    flex-direction: column;
+    gap: $spacing_xs;
+  }
+}
+
+.purchaseDiscount {
+  color: $color_red;
+}
+
+.purchaseEarned {
+  color: $color_beige;
+  font-weight: 600;
+}
+
+.noData {
+  text-align: center;
+  padding: $spacing_xl;
+  color: rgba($color_blue, 0.7);
+  font-size: 1rem;
+  font-family: $font_family_main;
+  background: $color_white_blue;
+  border-radius: $radius_lg;
+}
+
+.totalCount {
+  font-size: 0.9rem;
+  color: $color_blue;
+  font-family: $font_family_main;
+}
+
+// Пагинация
+.pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: $spacing_md;
+  margin-top: $spacing_lg;
+  padding-top: $spacing_lg;
+  border-top: 1px solid rgba($color_blue, 0.1);
+}
+
+.pageButton {
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: $color_bg_white;
+  border: 2px solid $color_beige;
+  border-radius: $radius_md;
+  color: $color_brown;
+  font-size: 1.2rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all $transition_fast;
+  
+  &:hover:not(:disabled) {
+    background: $color_beige;
+    color: $color_bg_white;
+  }
+  
+  &:disabled {
+    opacity: 0.3;
+    cursor: not-allowed;
+  }
+}
+
+.pageInfo {
+  font-size: 0.95rem;
+  color: $color_blue;
+  font-family: $font_family_main;
+}
+
+// Загрузка и ошибки
+.loadingContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 500px;
+  gap: $spacing_md;
+  background: $color_bg_white;
+  border-radius: $radius_xl;
+  padding: $spacing_xxl;
+  box-shadow: $shadow_small;
+  margin: $spacing_xxl auto;
+  max-width: 400px;
+  
+  .spinner {
+    width: 50px;
+    height: 50px;
+    border: 4px solid rgba($color_beige, 0.2);
+    border-radius: 50%;
+    border-top-color: $color_beige;
+    animation: spin 1s ease-in-out infinite;
+  }
+  
+  p {
+    color: $color_blue;
+    font-size: 16px;
+    font-family: $font_family_main;
+  }
+}
+
+.errorContainer {
+  text-align: center;
+  padding: $spacing_xxl;
+  background: $color_bg_white;
+  border-radius: $radius_xl;
+  box-shadow: $shadow_small;
+  max-width: 500px;
+  margin: $spacing_xxl auto;
+  
+  .errorIcon {
+    font-size: 3rem;
+    margin-bottom: $spacing_md;
+    color: $color_red;
+  }
+  
+  h2 {
+    font-size: 1.5rem;
+    color: $color_red;
+    margin-bottom: $spacing_md;
+    font-weight: 600;
+    font-family: $font_family_main;
+  }
+  
+  .errorActions {
+    display: flex;
+    gap: $spacing_md;
+    justify-content: center;
+    
+    @media (max-width: $breakpoint_mobile) {
+      flex-direction: column;
+    }
+  }
+  
+  .retryButton, .loginButton {
+    padding: $spacing_md $spacing_xl;
+    border: none;
+    border-radius: $radius_lg;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all $transition_normal;
+    font-family: $font_family_main;
+    flex: 1;
+  }
+  
+  .retryButton {
+    background: linear-gradient(135deg, $color_beige 0%, $color_brown 100%);
+    color: $color_bg_white;
+    
+    &:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 20px rgba($color_beige, 0.3);
+    }
+  }
+  
+  .loginButton {
+    background: linear-gradient(135deg, $color_blue 0%, darken($color_blue, 10%) 100%);
+    color: $color_bg_white;
+    
+    &:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 20px rgba($color_blue, 0.3);
+    }
+  }
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+.purchaseItems {
+  margin: $spacing_sm 0;
+  padding: $spacing_sm;
+  background: $color_white_blue;
+  border-radius: $radius_sm;
+}
+
+.purchaseItem {
+  display: grid;
+  grid-template-columns: 1fr auto auto;
+  gap: $spacing_sm;
+  padding: $spacing_xs 0;
+  font-size: 0.9rem;
+  
+  &:not(:last-child) {
+    border-bottom: 1px dashed rgba($color_blue, 0.2);
+  }
+}
+
+.itemName {
+  color: $color_brown;
+  font-weight: 500;
+  word-break: break-word;
+}
+
+.itemQuantity {
+  color: $color_blue;
+  min-width: 40px;
+  text-align: center;
+}
+
+.itemPrice {
+  color: $color_brown;
+  font-weight: 600;
+  min-width: 70px;
+  text-align: right;
+}
+
+.purchaseSummary {
+  padding: $spacing_sm;
+  color: $color_blue;
+  font-style: italic;
+  background: $color_white_blue;
+  border-radius: $radius_sm;
+  margin: $spacing_sm 0;
+}

@@ -1,0 +1,178 @@
+// frontend/app/menu/menu.module.scss
+@import '../../public/styles/_variables.scss';
+
+.page {
+  padding: $spacing_xl 0;
+  min-height: 100vh;
+  background: $color_bg_white;
+}
+
+.container {
+  max-width: $container_desktop;
+  margin: 0 auto;
+  padding: 0 $spacing_lg;
+  
+  @media (max-width: $breakpoint_tablet) {
+    padding: 0 $spacing_md;
+  }
+  
+  @media (max-width: $breakpoint_mobile) {
+    padding: 0 $spacing_sm;
+  }
+}
+
+.header {
+  text-align: center;
+  margin-bottom: $spacing_xxl;
+}
+
+.title {
+  font-size: 2.5rem;
+  color: $color_brown;
+  margin-bottom: $spacing_sm;
+  font-family: $font_family_main;
+  font-weight: 600;
+}
+
+.subtitle {
+  font-size: 1.1rem;
+  color: $color_blue;
+  font-family: $font_family_main;
+}
+
+.filters {
+  margin-bottom: $spacing_xl;
+  padding: $spacing_lg;
+  background: $color_white_blue;
+  border-radius: $radius_lg;
+  box-shadow: $shadow_small;
+}
+
+.filterBadges {
+  display: flex;
+  flex-wrap: wrap;
+  gap: $spacing_sm;
+  justify-content: center;
+}
+
+.filterBadge {
+  display: inline-block;
+  padding: $spacing_sm $spacing_lg;
+  background: $color_bg_white;
+  color: $color_brown;
+  border-radius: $radius_xl;
+  text-decoration: none;
+  font-family: $font_family_main;
+  font-weight: 500;
+  transition: all $transition_fast;
+  border: 1px solid rgba($color_brown, 0.2);
+  
+  &:hover {
+    background: $color_beige;
+    transform: translateY(-2px);
+    box-shadow: $shadow_small;
+  }
+  
+  &.active {
+    background: $color_brown;
+    color: $color_light;
+    border-color: $color_brown;
+  }
+}
+
+.errorContainer {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: $spacing_xl;
+  background: $color_bg_white;
+  
+  h1 {
+    font-size: 2rem;
+    color: $color_red;
+    margin-bottom: $spacing_md;
+    font-weight: 600;
+    font-family: $font_family_main;
+    
+    @media (max-width: $breakpoint_mobile) {
+      font-size: 1.5rem;
+    }
+  }
+  
+  p {
+    font-size: 1.1rem;
+    color: $color_blue;
+    font-family: $font_family_main;
+    
+    @media (max-width: $breakpoint_mobile) {
+      font-size: 1rem;
+    }
+  }
+}
+
+// Адаптивность
+@media (max-width: $breakpoint_tablet) {
+  .page {
+    padding: $spacing_lg 0;
+  }
+  
+  .title {
+    font-size: 2rem;
+  }
+  
+  .subtitle {
+    font-size: 1rem;
+  }
+  
+  .filters {
+    padding: $spacing_md;
+  }
+  
+  .filterBadges {
+    gap: $spacing_xs;
+  }
+  
+  .filterBadge {
+    padding: $spacing_xs $spacing_md;
+    font-size: 0.9rem;
+  }
+}
+
+@media (max-width: $breakpoint_mobile) {
+  .page {
+    padding: $spacing_md 0;
+  }
+  
+  .title {
+    font-size: 1.75rem;
+  }
+  
+  .header {
+    margin-bottom: $spacing_xl;
+  }
+  
+  .filters {
+    margin-bottom: $spacing_lg;
+    padding: $spacing_sm;
+  }
+  
+  .filterBadges {
+    justify-content: flex-start;
+    overflow-x: auto;
+    padding-bottom: $spacing_xs;
+    
+    // Скрываем скроллбар
+    &::-webkit-scrollbar {
+      display: none;
+    }
+    -ms-overflow-style: none;
+    //scrollbar-width: none;
+  }
+  
+  .filterBadge {
+    white-space: nowrap;
+  }
+}

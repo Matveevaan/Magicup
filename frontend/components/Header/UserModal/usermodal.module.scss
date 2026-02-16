@@ -1,0 +1,628 @@
+// components/Header/CleanUserModal/cleanusermodal.module.scss
+@import "../../../public/styles/_variables.scss";
+
+// usermodal.module.scss
+.modalOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba($color_black, 0.7);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: $z_modal;
+  backdrop-filter: blur(5px);
+  animation: fadeIn $transition_fast;
+}
+
+.modal {
+  background: $color_bg_white;
+  border-radius: $radius_xl;
+  padding: $spacing_xl;
+  width: 90%;
+  max-width: 500px;
+  max-height: 90vh;
+  overflow-y: auto;
+  position: relative;
+  box-shadow: $shadow_large;
+  animation: slideUp $transition_normal;
+  border: 1px solid rgba($color_beige, 0.2);
+
+  &::-webkit-scrollbar {
+    width: 8px;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: $color_white_blue;
+    border-radius: $radius_xs;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: $color_beige;
+    border-radius: $radius_xs;
+  }
+}
+
+.closeButton {
+  position: absolute;
+  top: $spacing_md;
+  right: $spacing_md;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: $spacing_sm;
+  border-radius: 50%;
+  transition: all $transition_fast;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  &:hover {
+    background: rgba($color_beige, 0.1);
+    transform: rotate(90deg);
+  }
+
+  img {
+    filter: brightness(0.5);
+  }
+}
+
+// ===== ПРОФИЛЬ =====
+.profile {
+  text-align: center;
+}
+
+.avatar {
+  width: 80px;
+  height: 80px;
+  background: linear-gradient(135deg, $color_beige 0%, lighten($color_beige, 10%) 100%);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto $spacing_md;
+  font-size: 32px;
+  font-weight: bold;
+  color: $color_brown;
+  box-shadow: 0 $spacing_sm $spacing_xl rgba($color_beige, 0.3);
+}
+
+.userName {
+  font-size: 24px;
+  font-weight: 600;
+  color: $color_dark;
+  margin: 0 0 $spacing_sm;
+  font-family: $font_family_main;
+}
+
+.userEmail {
+  color: $color_blue;
+  margin: 0 0 $spacing_md;
+  font-size: 14px;
+}
+
+// .userInfoGrid {
+//   display: grid;
+//   grid-template-columns: 1fr 1fr;
+//   gap: $spacing_md;
+//   margin: $spacing_lg 0;
+//   background: $color_white_blue;
+//   padding: $spacing_md;
+//   border-radius: $radius_lg;
+//   border: 1px solid rgba($color_blue, 0.1);
+// }
+
+.infoItem {
+  // display: flex;
+  // flex-direction: column;
+  align-items: center;
+  margin-top: 20px; 
+  // gap: $spacing_xs;
+}
+
+.infoLabel {
+  font-size: 16px;
+  color: $color_blue;
+  font-weight: 500;
+   margin-right: 10px;
+}
+
+.infoValue {
+  font-size: 22px;
+  font-weight: 700;
+  color: $color_brown;
+  line-height: 1;
+}
+
+// ===== ШТРИХКОД =====
+.barcodeSection {
+  margin: $spacing_xl 0;
+  padding: $spacing_lg;
+  background: linear-gradient(135deg, $color_white_blue 0%, lighten($color_white_blue, 5%) 100%);
+  border-radius: $radius_lg;
+  border: 2px solid $color_beige;
+}
+
+.sectionTitle {
+  text-align: center;
+  margin: 0 0 $spacing_md;
+  color: $color_brown;
+  font-size: 18px;
+  font-family: $font_family_main;
+  font-weight: 600;
+}
+
+.ean13Barcode {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: $spacing_md;
+}
+
+.barcodeContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 120px;
+  background: $color_bg_white;
+  border-radius: $radius_md;
+  width: 100%;
+  padding: $spacing_md;
+  box-shadow: $shadow_small;
+}
+
+.simpleBarcode {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
+
+.barcodeBars {
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  height: 80px;
+  margin-bottom: $spacing_md;
+  padding: $spacing_sm 0;
+  background: $color_bg_white;
+  border-radius: $radius_xs;
+  width: 100%;
+  overflow: hidden;
+}
+
+.barcodeBar {
+  transition: height $transition_fast;
+  background-color: $color_dark;
+  width: 3px;
+  margin: 0 1px;
+  display: inline-block;
+}
+
+.barcodeNumbers {
+  font-family: 'Courier New', monospace;
+  font-size: 16px;
+  font-weight: bold;
+  letter-spacing: 2px;
+  color: $color_dark;
+  padding: $spacing_sm;
+  border-radius: $radius_xs;
+  background: $color_bg_white;
+  border: 1px solid rgba($color_beige, 0.5);
+}
+
+.barcodeImage {
+  width: 100%;
+  height: auto;
+  max-height: 100px;
+  object-fit: contain;
+}
+
+.barcodeHint {
+  margin-top: $spacing_md;
+  font-size: 14px;
+  color: $color_blue;
+  text-align: center;
+  line-height: 1.5;
+}
+
+.barcodeError {
+  padding: $spacing_lg;
+  background: linear-gradient(135deg, lighten($color_red, 40%) 0%, lighten($color_red, 35%) 100%);
+  border: 2px solid lighten($color_red, 30%);
+  border-radius: $radius_md;
+  color: $color_red;
+  text-align: center;
+  font-weight: 600;
+  font-size: 14px;
+  margin: $spacing_sm 0;
+}
+
+// ===== ЛОГАУТ КНОПКА =====
+.logoutButton {
+  width: 100%;
+  background: linear-gradient(135deg, $color_red 0%, darken($color_red, 10%) 100%);
+  color: $color_bg_white;
+  border: none;
+  padding: $spacing_md;
+  border-radius: $radius_lg;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all $transition_normal;
+  margin-top: $spacing_lg;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: $spacing_sm;
+  font-family: $font_family_main;
+
+  &:hover:not(:disabled) {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba($color_red, 0.3);
+  }
+
+  &:disabled {
+    opacity: 0.7;
+    cursor: not-allowed;
+  }
+}
+
+// ===== АУТЕНТИФИКАЦИЯ =====
+.auth {
+  .authHeader {
+    text-align: center;
+    margin-bottom: $spacing_lg;
+  }
+
+  .title {
+    font-size: 28px;
+    color: $color_brown;
+    margin: 0 0 $spacing_sm;
+    font-weight: 700;
+    font-family: $font_family_main;
+  }
+
+  .subtitle {
+    color: $color_blue;
+    margin: 0;
+    font-size: 14px;
+  }
+}
+
+.nameFields {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: $spacing_md;
+  margin-bottom: $spacing_md;
+
+  @media (max-width: $breakpoint_mobile) {
+    grid-template-columns: 1fr;
+  }
+}
+
+.form {
+  margin: $spacing_lg 0;
+}
+
+.inputGroup {
+  margin-bottom: $spacing_md;
+
+  label {
+    display: block;
+    margin-bottom: $spacing_sm;
+    font-weight: 600;
+    color: $color_dark;
+    font-size: 14px;
+    font-family: $font_family_main;
+
+    .required {
+      color: $color_red;
+    }
+  }
+}
+
+.input {
+  width: 100%;
+  padding: $spacing_md;
+  border: 2px solid rgba($color_beige, 0.5);
+  border-radius: $radius_lg;
+  font-size: 16px;
+  transition: all $transition_normal;
+  background: $color_bg_white;
+  font-family: $font_family_main;
+  color: $color_dark;
+
+  &:focus {
+    outline: none;
+    border-color: $color_beige;
+    box-shadow: 0 0 0 3px rgba($color_beige, 0.1);
+  }
+
+  &::placeholder {
+    color: $color_blue;
+    opacity: 0.6;
+  }
+}
+
+.passwordWrapper {
+  position: relative;
+}
+
+.passwordToggle {
+  position: absolute;
+  right: $spacing_md;
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: $spacing_xs;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: $color_blue;
+  transition: color $transition_fast;
+
+  &:hover {
+    color: $color_brown;
+  }
+}
+
+.error {
+  background: linear-gradient(135deg, lighten($color_red, 40%) 0%, lighten($color_red, 35%) 100%);
+  padding: $spacing_md;
+  border-radius: $radius_lg;
+  margin: $spacing_md 0;
+  color: $color_red;
+  font-size: 14px;
+  border-left: 4px solid $color_red;
+  display: flex;
+  align-items: center;
+  gap: $spacing_sm;
+
+  .errorIcon {
+    font-size: 16px;
+  }
+}
+
+.success {
+  background: linear-gradient(135deg, lighten(#28a745, 40%) 0%, lighten(#28a745, 35%) 100%);
+  padding: $spacing_md;
+  border-radius: $radius_lg;
+  margin: $spacing_md 0;
+  color: #28a745;
+  font-size: 14px;
+  border-left: 4px solid #28a745;
+  display: flex;
+  align-items: center;
+  gap: $spacing_sm;
+
+  .successIcon {
+    font-size: 16px;
+  }
+}
+
+.submitButton {
+  width: 100%;
+  background: linear-gradient(135deg, $color_beige 0%, $color_brown 100%);
+  color: $color_bg_white;
+  border: none;
+  padding: $spacing_lg;
+  border-radius: $radius_lg;
+  font-size: 18px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all $transition_normal;
+  margin-top: $spacing_md;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: $spacing_sm;
+  font-family: $font_family_main;
+
+  &:hover:not(:disabled) {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba($color_beige, 0.3);
+  }
+
+  &:disabled {
+    opacity: 0.7;
+    cursor: not-allowed;
+  }
+
+  .spinner {
+    width: 20px;
+    height: 20px;
+    border: 3px solid rgba($color_bg_white, 0.3);
+    border-radius: 50%;
+    border-top-color: $color_bg_white;
+    animation: spin 1s ease-in-out infinite;
+  }
+}
+
+.switchForm {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: $spacing_md;
+  margin-top: $spacing_lg;
+  padding-top: $spacing_lg;
+  border-top: 1px solid rgba($color_beige, 0.3);
+}
+
+.switchText {
+  color: $color_blue;
+  font-size: 14px;
+  font-family: $font_family_main;
+}
+
+.switchButton {
+  background: none;
+  border: none;
+  color: $color_beige;
+  font-weight: 600;
+  cursor: pointer;
+  font-size: 14px;
+  transition: all $transition_fast;
+  font-family: $font_family_main;
+
+  &:hover {
+    color: $color_brown;
+    text-decoration: underline;
+  }
+}
+
+.demoHint {
+  margin-top: $spacing_lg;
+  padding: $spacing_md;
+  background: linear-gradient(135deg, $color_white_blue 0%, lighten($color_white_blue, 5%) 100%);
+  border-radius: $radius_lg;
+  border: 1px solid rgba($color_beige, 0.5);
+
+  .demoTitle {
+    font-weight: 600;
+    margin-bottom: $spacing_sm;
+    color: $color_brown;
+    font-family: $font_family_main;
+  }
+
+  p {
+    margin: $spacing_xs 0;
+    color: $color_dark;
+    font-size: 14px;
+    font-family: $font_family_main;
+
+    code {
+      background: $color_bg_white;
+      padding: 2px $spacing_sm;
+      border-radius: $radius_xs;
+      font-family: monospace;
+      color: $color_brown;
+      border: 1px solid rgba($color_beige, 0.5);
+    }
+  }
+}
+
+// Анимации
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY($spacing_xl);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+// Адаптивность
+@media (max-width: $breakpoint_tablet) {
+  .modal {
+    padding: $spacing_lg $spacing_md;
+    width: 95%;
+    border-radius: $radius_lg;
+  }
+
+  .userInfoGrid {
+    grid-template-columns: 1fr;
+    gap: $spacing_md;
+  }
+
+  .title {
+    font-size: 24px;
+  }
+
+  .nameFields {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: $breakpoint_mobile) {
+  .modal {
+    padding: $spacing_md $spacing_sm;
+    border-radius: $radius_md;
+  }
+
+  .avatar {
+    width: 60px;
+    height: 60px;
+    font-size: 24px;
+  }
+
+  .userName {
+    font-size: 20px;
+  }
+
+  .barcodeNumbers {
+    font-size: 14px;
+  }
+
+  .infoValue {
+    font-size: 18px;
+  }
+}
+.profileLink {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: $spacing_sm;
+  width: 100%;
+  padding: $spacing_md;
+  background: linear-gradient(135deg, $color_blue 0%, darken($color_blue, 10%) 100%);
+  color: $color_bg_white;
+  border: none;
+  border-radius: $radius_lg;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all $transition_normal;
+  margin-top: $spacing_lg;
+  margin-bottom: $spacing_sm;
+  text-decoration: none;
+  font-family: $font_family_main;
+
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba($color_blue, 0.3);
+  }
+
+  .profileLinkIcon {
+    font-size: 18px;
+  }
+}
+
+.forgotPassword {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: -$spacing_sm;
+  margin-bottom: $spacing_md;
+
+  .forgotPasswordButton {
+    background: none;
+    border: none;
+    color: $color_blue;
+    font-size: 14px;
+    cursor: pointer;
+    padding: $spacing_sm;
+    transition: color $transition_fast;
+    text-decoration: underline;
+    text-decoration-color: transparent;
+    
+    &:hover {
+      color: $color_brown;
+      text-decoration-color: currentColor;
+    }
+  }
+}

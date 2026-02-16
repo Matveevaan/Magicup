@@ -1,0 +1,48 @@
+// components/Header/HeaderMenu/headermenu.module.scss
+@import '../../../public/styles/_variables.scss';
+
+.main {
+    display: flex;
+    align-items: center;
+    
+    @media(max-width: $breakpoint_tablet) {
+        display: none;
+    }
+}
+
+.menu {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    
+}
+
+.menuLine {
+    color: $color_brown;
+    font-weight: 600;
+    font-size: 18px;
+
+
+    a {
+        display: inline-block;
+        text-decoration: none;
+        color: inherit;
+        padding: 5px 0;
+        transition: color $transition_fast;
+        
+        &:hover {
+            color: darken($color_brown, 15%);
+        }
+    }
+}
+
+.dropdown {
+    z-index: 100;
+    position: relative;
+    
+    &:hover {
+        .dropdown_content {
+            display: block;
+        }
+    }
+}

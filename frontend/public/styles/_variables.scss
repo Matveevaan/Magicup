@@ -1,0 +1,65 @@
+// frontend/public/styles/_variables.scss
+$color_bg_white: #F9F8FF;
+$color_bg_darkblue: #023283;
+$color_blue: #296385;
+$color_red: #FF4158;
+$color_black: #000000;
+$color_white_blue: #E0ECF7;
+$color_beige: rgb(209, 188, 138);
+$color_brown: rgb(61.2 35.7 10.2);
+
+$color_light: #fff9f0;
+$color_dark: #333333;
+
+$font_color_gray: #313131;
+$font_color_white: #FFFFFF;
+
+$font_family_main: "Gilroy", sans-serif;
+
+$breakpoint_mobile: 480px;
+$breakpoint_tablet: 768px;
+$breakpoint_desktop: 1080px;
+$breakpoint_max: 1920px;
+
+$shadow_small: 0 2px 8px rgba(0, 0, 0, 0.1);
+$shadow_medium: 0 4px 16px rgba(0, 0, 0, 0.15);
+$shadow_large: 0 8px 32px rgba(0, 0, 0, 0.2);
+
+// Цвета для меню (добавить к существующим)
+$color_drinks_bg: $color_beige;
+$color_drinks_text: $color_brown;
+$color_desserts_bg: lighten($color_beige, 10%);
+$color_desserts_text: darken($color_brown, 10%);
+$color_sandwiches_bg: lighten($color_beige, 5%);
+$color_sandwiches_text: $color_brown;
+
+// Радиусы (добавить если нет)
+$radius_xs: 4px;
+$radius_sm: 8px;
+$radius_md: 12px;
+$radius_lg: 16px;
+$radius_xl: 20px;
+
+// Переходы
+$transition_fast: 0.2s ease;
+$transition_normal: 0.3s ease;
+$transition_slow: 0.5s ease;
+
+// Z-index слои
+$z_dropdown: 100;
+$z_modal: 1000;
+$z_tooltip: 2000;
+
+// Отступы
+$spacing_xs: 4px;
+$spacing_sm: 8px;
+$spacing_md: 16px;
+$spacing_lg: 24px;
+$spacing_xl: 32px;
+$spacing_xxl: 48px;
+
+// Размеры контейнеров
+$container_mobile: 100%;
+$container_tablet: 720px;
+$container_desktop: 1080px;
+$container_max: 1200px;

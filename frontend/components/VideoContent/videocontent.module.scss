@@ -1,0 +1,23 @@
+@import "../../public/styles/_variables.scss";
+
+.main{
+position: relative;
+  width: 100%;
+  //height: auto;
+  overflow: hidden;
+  border-radius: 10px;
+}
+.video {
+  // Вариант A: Заполнить весь контейнер
+  width: 100%;
+  height: 100%;
+  object-fit: cover; // или contain
+  
+  // Вариант B: Фиксированные размеры
+  // width: 800px;
+  // height: 450px;
+  
+  // Вариант C: Адаптивные размеры
+  // max-width: 100%;
+  // height: auto;
+}

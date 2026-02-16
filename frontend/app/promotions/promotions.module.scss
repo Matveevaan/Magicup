@@ -1,0 +1,246 @@
+// frontend/app/promotions/promotions.module.scss
+@import '../../public/styles/_variables.scss';
+
+.page {
+  padding: $spacing_xl 0;
+  min-height: 100vh;
+  background: $color_bg_white;
+}
+
+.container {
+  max-width: $container_desktop;
+  margin: 0 auto;
+  padding: 0 $spacing_lg;
+  
+  @media (max-width: $breakpoint_tablet) {
+    padding: 0 $spacing_md;
+  }
+  
+  @media (max-width: $breakpoint_mobile) {
+    padding: 0 $spacing_sm;
+  }
+}
+
+.header {
+  text-align: center;
+  margin-bottom: $spacing_xxl;
+}
+
+.title {
+  font-size: 2.5rem;
+  color: $color_brown;
+  margin-bottom: $spacing_sm;
+  font-family: $font_family_main;
+  font-weight: 600;
+}
+
+.subtitle {
+  font-size: 1.1rem;
+  color: $color_blue;
+  font-family: $font_family_main;
+  max-width: 600px;
+  margin: 0 auto;
+  line-height: 1.6;
+}
+
+.section {
+  margin-bottom: $spacing_xxl;
+}
+
+.sectionTitle {
+  font-size: 1.75rem;
+  color: $color_brown;
+  margin-bottom: $spacing_xl;
+  font-family: $font_family_main;
+  font-weight: 600;
+  padding-bottom: $spacing_sm;
+  border-bottom: 2px solid $color_beige;
+}
+
+.grid {
+  display: grid;
+  gap: $spacing_xl;
+  width: 100%;
+  
+  /* Десктоп: 3 карточки в ряду */
+  grid-template-columns: repeat(3, 1fr);
+  
+  /* Планшет (768px-1024px): 2 карточки */
+  @media (max-width: $breakpoint_desktop) {
+    grid-template-columns: repeat(2, 1fr);
+    gap: $spacing_lg;
+  }
+  
+  /* Мобильные (<768px): 1 карточка */
+  @media (max-width: $breakpoint_mobile) {
+    grid-template-columns: 1fr;
+    gap: $spacing_lg;
+    max-width: 500px;
+    margin: 0 auto;
+  }
+}
+
+.errorContainer,
+.inactiveContainer {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: $spacing_xl;
+  background: $color_bg_white;
+  
+  h1 {
+    font-size: 2rem;
+    color: $color_brown;
+    margin-bottom: $spacing_md;
+    font-weight: 600;
+    font-family: $font_family_main;
+    
+    @media (max-width: $breakpoint_mobile) {
+      font-size: 1.5rem;
+    }
+  }
+  
+  p {
+    font-size: 1.1rem;
+    color: $color_blue;
+    font-family: $font_family_main;
+    
+    @media (max-width: $breakpoint_mobile) {
+      font-size: 1rem;
+    }
+  }
+}
+
+.errorContainer {
+  h1 {
+    color: $color_red;
+  }
+}
+
+.empty {
+  text-align: center;
+  padding: $spacing_xxl;
+  background: $color_white_blue;
+  border-radius: $radius_lg;
+  box-shadow: $shadow_small;
+  margin-bottom: $spacing_xxl;
+  
+  p {
+    font-size: 1.1rem;
+    color: $color_blue;
+    margin-bottom: $spacing_sm;
+    font-family: $font_family_main;
+    
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+}
+
+.info {
+  background: $color_white_blue;
+  border-radius: $radius_lg;
+  padding: $spacing_xl;
+  box-shadow: $shadow_small;
+  margin-top: $spacing_xl;
+  
+  h3 {
+    color: $color_brown;
+    margin-bottom: $spacing_md;
+    font-size: 1.25rem;
+    font-family: $font_family_main;
+    font-weight: 600;
+  }
+  
+  ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    
+    li {
+      padding: $spacing_xs 0;
+      padding-left: $spacing_lg;
+      position: relative;
+      color: $color_blue;
+      line-height: 1.6;
+      font-family: $font_family_main;
+      
+      &:before {
+        content: '✓';
+        position: absolute;
+        left: 0;
+        color: $color_brown;
+        font-weight: bold;
+      }
+    }
+  }
+}
+
+// Адаптивность
+@media (max-width: $breakpoint_tablet) {
+  .page {
+    padding: $spacing_lg 0;
+  }
+  
+  .title {
+    font-size: 2rem;
+  }
+  
+  .subtitle {
+    font-size: 1rem;
+  }
+  
+  .sectionTitle {
+    font-size: 1.5rem;
+    margin-bottom: $spacing_lg;
+  }
+  
+  .empty {
+    padding: $spacing_xl;
+  }
+  
+  .info {
+    padding: $spacing_lg;
+  }
+}
+
+@media (max-width: $breakpoint_mobile) {
+  .page {
+    padding: $spacing_md 0;
+  }
+  
+  .title {
+    font-size: 1.75rem;
+  }
+  
+  .header {
+    margin-bottom: $spacing_xl;
+  }
+  
+  .sectionTitle {
+    font-size: 1.3rem;
+  }
+  
+  .empty {
+    padding: $spacing_lg;
+    
+    p {
+      font-size: 1rem;
+    }
+  }
+  
+  .info {
+    padding: $spacing_md;
+    
+    h3 {
+      font-size: 1.1rem;
+    }
+    
+    ul li {
+      font-size: 0.9rem;
+    }
+  }
+}

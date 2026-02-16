@@ -1,0 +1,33 @@
+# Python/Django
+**/venv/
+**/__pycache__/
+**/*.pyc
+**/*.pyo
+**/*.pyd
+**/.env
+**/.coverage
+**/db.sqlite3
+**/*.sqlite3
+**/static/
+
+**/staticfiles/
+**/*.egg-info/
+**/dist/
+**/build/
+
+# Next.js/React
+**/node_modules/
+**/.next/
+**/out/
+**/build/
+**/dist/
+**/.env.local
+**/coverage/
+
+# Временные файлы
+*.log
+*.tsv
+*.txt
+
+test_data.txt
+project_for_excel.tsv

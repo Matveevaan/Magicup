@@ -1,0 +1,69 @@
+@import '../public/styles/_variables.scss';
+
+.homePage {
+  width: 100%;
+  max-width: $container_max; // 1200px
+  margin: 0 auto;
+  padding: $spacing_lg;
+  display: flex;
+  flex-direction: column;
+  gap: $spacing_xl; // Отступ между блоками
+  
+  @media (max-width: $breakpoint_tablet) {
+    padding: $spacing_md;
+    gap: $spacing_lg;
+  }
+  
+  @media (max-width: $breakpoint_mobile) {
+    padding: $spacing_sm;
+    gap: $spacing_md;
+  }
+}
+
+.carouselSection,
+.pairSection,
+.mapSection,
+.additionalSection {
+  margin: 0;
+  padding: 0;
+  background: transparent;
+  border: none;
+  box-shadow: none;
+  border-radius: 0;
+}
+
+// Стили для пустого состояния
+.emptyState {
+  text-align: center;
+  padding: $spacing_xxl $spacing_lg;
+  color: $color_blue;
+  font-size: 1.1rem;
+  font-family: $font_family_main;
+  border-radius: $radius_lg;
+  background: $color_bg_white;
+  border: 2px dashed lighten($color_blue, 40%);
+}
+
+// Стили для загрузки и ошибок
+.loadingContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 60vh;
+  gap: $spacing_lg;
+  
+  p {
+    color: $color_blue;
+    font-size: 1.1rem;
+    font-family: $font_family_main;
+  }
+}
+
+.errorContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 60vh;
+  padding: $spacing_lg;
+}

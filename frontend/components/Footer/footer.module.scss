@@ -1,0 +1,126 @@
+// components/Footer/footer.module.scss
+@import '../../public/styles/_variables.scss';
+
+.footer {
+    background: $color_beige;
+    padding: $spacing_xl 0;
+    color: $color_brown;
+    border-top: 1px solid rgba($color_brown, 0.1);
+}
+
+.container {
+    max-width: $container_desktop;
+    margin: 0 auto;
+    padding: 0 $spacing_md;
+}
+
+.footerGrid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: $spacing_xl;
+    margin-bottom: $spacing_xl;
+
+    @media (max-width: $breakpoint_tablet) {
+        grid-template-columns: 1fr;
+        gap: $spacing_lg;
+    }
+}
+
+.column {
+    .columnTitle {
+        font-size: 20px;
+        color: $color_brown;
+        font-weight: 600;
+        margin-bottom: $spacing_lg;
+        font-family: $font_family_main;
+    }
+}
+.titleMenu{
+    font-size: 18px;
+        color: $color_brown;
+        font-weight: 600;
+        //margin-bottom: $spacing_lg;
+        font-family: $font_family_main;
+}
+
+.navigation {
+    display: flex;
+    gap: $spacing_lg;
+
+    @media (max-width: $breakpoint_mobile) {
+        flex-direction: column;
+        gap: $spacing_md;
+    }
+}
+
+.navGroup {
+    display: flex;
+    flex-direction: column;
+    gap: $spacing_sm;
+    
+}
+.navMenu{
+    display: flex;
+    flex-direction: column;
+    font-style: italic;
+    gap: $spacing_xs;
+    margin-left: $spacing_md;
+}
+.navLink {
+    color: $color_brown;
+    font-weight: 500;
+    font-size: 16px;
+    text-decoration: none;
+    transition: color $transition_fast;
+    padding: $spacing_xs 0;
+    line-height: 1.4;
+
+    &:hover {
+        color: darken($color_brown, 20%);
+    }
+
+    @media (max-width: $breakpoint_tablet) {
+        font-size: 15px;
+    }
+}
+
+/* Контакты */
+.geolocation {
+    display: flex;
+    align-items: flex-start;
+    gap: $spacing_sm;
+    margin-top: $spacing_lg;
+
+    .geoIcon {
+        position: relative;
+        top: 4px;
+        flex-shrink: 0;
+    }
+
+    .geolocationText {
+        .city {
+            font-size: 18px;
+            color: $color_brown;
+            font-weight: 600;
+            margin-bottom: $spacing_xs;
+            line-height: 1.2;
+        }
+
+        .address {
+            font-size: 16px;
+            color: $color_brown;
+            font-weight: 400;
+            margin-bottom: 0;
+            line-height: 1.4;
+        }
+    }
+}
+
+.copyright {
+    text-align: center;
+    padding-top: $spacing_lg;
+    border-top: 1px solid rgba($color_brown, 0.1);
+    font-size: 14px;
+    color: darken($color_brown, 15%);
+    font-weight: 400;
+}

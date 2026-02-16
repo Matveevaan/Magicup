@@ -1,0 +1,126 @@
+// components/Header/DropDown/dropdown.module.scss
+@import '../../../public/styles/_variables.scss';
+
+.dropdown_flex {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    
+}
+
+
+.dropdown, .dropdownnew {
+    color: $color_brown;  
+    cursor: pointer;
+    
+    /* Мобильная версия (<768px) */
+    @media (max-width: 767px) {
+        border-bottom: .1px solid rgba(209, 188, 138, 0.5);
+       
+    }
+    
+    /* Десктопная версия (≥768px) */
+    @media (min-width: 768px) {
+        border-bottom: none;
+        position: relative;
+        
+        &:hover {
+            color: darken($color_brown, 10%);
+            .dropdown_content {
+                display: block;
+            }
+        }
+    }
+}
+
+.dropdownChevron, .dropdownChevronUp {
+    width: 20px;
+    height: 20px;
+}
+
+.dropdownChevronUp {
+    transform: rotate(180deg);
+}
+
+.dropdown_content {
+    margin: 10px 0 10px 15px;
+    
+    /* Десктопная версия (≥768px) */
+    @media (min-width: 768px) {
+        position: absolute;
+        padding: 10px 15px;
+        background: $color_beige;
+        min-width: 200px;
+        box-shadow: $shadow_medium;
+        border-radius: $radius_md;
+        z-index: 101;
+        display: none;
+        margin: 5px 0 0 0;
+        left: 0;
+        top: 100%;
+    }
+}
+
+/* Показываем при активном состоянии на десктопе */
+.dropdownnew .dropdown_content,
+.dropdown:hover .dropdown_content {
+    @media (min-width: 768px) {
+        display: block;
+    }
+}
+
+.coffeeMenu {
+    margin-bottom: 10px;
+    font-size: 18px;
+    font-style: italic;
+    font-weight: 400;
+    
+    /* Мобильная версия */
+    @media (max-width: 767px) {
+        border-bottom: .1px solid rgba(209, 188, 138, 0.5);
+    }
+    
+    /* Десктопная версия */
+    @media (min-width: 768px) {
+        margin-bottom: 8px;
+        border-bottom: none;
+        
+        &:last-child {
+            margin-bottom: 0;
+        }
+        
+        &:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+    }
+}
+
+.menuLink {
+    display: block;
+    width: 100%;
+    padding: 8px 0;
+    text-decoration: none;
+    color: inherit;
+    
+    &:hover {
+        color: darken($color_brown, 10%);
+    }
+}
+
+.title {
+    font-size: 18px;
+    font-weight: 600;
+    margin: 0;
+    cursor: pointer;
+    padding: 5px 0;
+    
+    @media (min-width: 768px) {
+        
+        &:hover {
+            color: darken($color_brown, 10%);
+        }
+    }
+    @media (max-width: 767px) {
+        font-size: 24px;
+    }
+}

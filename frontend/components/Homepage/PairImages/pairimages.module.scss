@@ -1,0 +1,120 @@
+@import '../../../public/styles/_variables.scss';
+
+.pairContainer {
+  width: 100%;
+  max-width: $container_desktop; // Такая же ширина как у других
+  margin: 0 auto;
+  padding: 0 $spacing_lg;
+  
+  @media (max-width: $breakpoint_tablet) {
+    padding: 0 $spacing_md;
+  }
+  
+  @media (max-width: $breakpoint_mobile) {
+    padding: 0 $spacing_sm;
+  }
+}
+
+.imageWrapper {
+  display: flex;
+  gap: $spacing_lg;
+  width: 100%;
+  
+  //  меняем на 480px
+  @media (max-width: 480px) {
+    flex-direction: column;
+    gap: $spacing_md;
+  }
+}
+
+.imageItem {
+  flex: 1;
+  position: relative;
+  height: 400px;
+  overflow: hidden;
+  border-radius: $radius_lg;
+  box-shadow: $shadow_small;
+  transition: transform $transition_normal, box-shadow $transition_normal;
+  
+  &:hover {
+    transform: translateY(-5px);
+    box-shadow: $shadow_medium;
+  }
+  
+  @media (max-width: $breakpoint_tablet) {
+    border-radius: $radius_md;
+  }
+  
+  @media (max-width: $breakpoint_mobile) {
+    border-radius: $radius_sm;
+  }
+}
+
+.imageLink,
+.imagePlaceholder {
+  display: block;
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+
+.image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+}
+
+.imageLink:hover .image {
+  transform: scale(1.05);
+}
+
+// Делаем квадратными на десктопе
+@media (min-width: 481px) {
+  .imageItem {
+    // Делаем квадратные пропорции
+    height: 0;
+    padding-bottom: 50%; // Соотношение 2:1 (два квадрата рядом)
+    
+    .imageLink,
+    .imagePlaceholder,
+    .image {
+      position: absolute;
+      top: 0;
+      left: 0;
+    }
+  }
+}
+
+// Адаптивность
+@media (max-width: $breakpoint_desktop) {
+  .imageWrapper {
+    gap: $spacing_md;
+  }
+  
+  // Для планшетов тоже квадраты
+  @media (min-width: 481px) and (max-width: $breakpoint_tablet) {
+    .imageItem {
+      padding-bottom: 50%; // Оставляем квадраты рядом
+    }
+  }
+}
+
+// На мобильных (до 480px) - вертикальные прямоугольники
+@media (max-width: 480px) {
+  .imageItem {
+    height: 300px; // Прямоугольные на мобильных
+    padding-bottom: 0; // Сбрасываем padding-bottom
+  }
+  
+  .imageWrapper {
+    gap: $spacing_sm;
+  }
+}
+
+// Для очень маленьких экранов
+@media (max-width: 360px) {
+  .imageItem {
+    height: 250px;
+  }
+}

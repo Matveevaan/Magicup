@@ -1,0 +1,357 @@
+@import '../../public/styles/_variables.scss';
+
+// Общие стили
+.page {
+  padding: 40px 0;
+  min-height: calc(100vh - 200px);
+  background: $color_bg_white;
+}
+
+.container {
+  max-width: $container_desktop;
+  margin: 0 auto;
+  padding: 0 $spacing_lg;
+  
+  @media (max-width: $breakpoint_tablet) {
+    padding: 0 $spacing_md;
+  }
+  
+  @media (max-width: $breakpoint_mobile) {
+    padding: 0 $spacing_sm;
+  }
+}
+
+// Контейнеры ошибок
+.errorContainer,
+.inactiveContainer {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: $spacing_xl;
+  background: $color_bg_white;
+  
+  h1 {
+    font-size: 2rem;
+    color: $color_brown;
+    margin-bottom: $spacing_md;
+    font-weight: 600;
+    font-family: $font_family_main;
+    
+    @media (max-width: $breakpoint_mobile) {
+      font-size: 1.5rem;
+    }
+  }
+  
+  p {
+    font-size: 1.1rem;
+    color: $color_blue;
+    font-family: $font_family_main;
+    
+    @media (max-width: $breakpoint_mobile) {
+      font-size: 1rem;
+    }
+  }
+}
+
+.errorContainer {
+  h1 {
+    color: $color_red;
+  }
+}
+
+// Заголовок
+.header {
+  text-align: center;
+  margin-bottom: $spacing_xxl;
+}
+
+.title {
+  font-size: 2.5rem;
+  color: $color_brown;
+  margin-bottom: $spacing_sm;
+  font-family: $font_family_main;
+  font-weight: 600;
+}
+
+.subtitle {
+  font-size: 1.1rem;
+  color: $color_blue;
+  font-family: $font_family_main;
+}
+
+// Основной контент
+.content {
+  display: grid;
+  grid-template-columns: 1fr 320px;
+  gap: $spacing_xl;
+  
+  // Tablet: 1 колонка для постов + сайдбар
+  @media (max-width: $breakpoint_desktop) and (min-width: $breakpoint_tablet) {
+    grid-template-columns: 1fr 300px;
+    gap: $spacing_lg;
+  }
+  
+  // Mobile: все в одну колонку
+  @media (max-width: $breakpoint_tablet) {
+    grid-template-columns: 1fr;
+  }
+}
+
+.main {
+  display: flex;
+  flex-direction: column;
+}
+
+// Фильтры и статистика
+.filters {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: $spacing_xl;
+  padding: $spacing_lg;
+  background: $color_white_blue;
+  border-radius: $radius_lg;
+  box-shadow: $shadow_small;
+  
+  @media (max-width: $breakpoint_mobile) {
+    flex-direction: column;
+    gap: $spacing_md;
+    align-items: stretch;
+  }
+}
+
+.stats {
+  background: $color_light;
+  padding: $spacing_sm $spacing_md;
+  border-radius: $radius_md;
+  color: $color_blue;
+  font-size: 0.95rem;
+  font-family: $font_family_main;
+}
+
+.categoryBadge {
+  display: flex;
+  align-items: center;
+  gap: $spacing_md;
+  padding: $spacing_sm $spacing_lg;
+  background-color: $color_beige;
+  border: 1px solid $color_brown;
+  border-radius: $radius_xl;
+  color: $color_brown;
+  font-family: $font_family_main;
+}
+
+.clearFilter {
+  color: $color_brown;
+  text-decoration: none;
+  font-size: 0.9rem;
+  padding: $spacing_xs $spacing_md;
+  border-radius: $radius_sm;
+  transition: $transition_fast;
+  
+  &:hover {
+    background-color: $color_brown;
+    color: $color_light;
+  }
+}
+
+// Список постов
+.postsList {
+  display: grid;
+  gap: $spacing_xl;
+  
+  // Desktop: 2 колонки карточек
+  @media (min-width: $breakpoint_desktop) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  
+  // Tablet: 1 колонка карточек (сайдбар справа)
+  @media (max-width: $breakpoint_desktop) and (min-width: $breakpoint_tablet) {
+    grid-template-columns: 1fr;
+  }
+  
+  // Mobile: 1 колонка
+  @media (max-width: $breakpoint_tablet) {
+    grid-template-columns: 1fr;
+  }
+}
+
+// Состояние "пусто"
+.empty {
+  text-align: center;
+  padding: $spacing_xxl;
+  background: $color_white_blue;
+  border-radius: $radius_lg;
+  box-shadow: $shadow_small;
+  margin-top: $spacing_xl;
+  
+  p {
+    font-size: 1.1rem;
+    color: $color_blue;
+    margin-bottom: $spacing_lg;
+    font-family: $font_family_main;
+  }
+}
+
+.backLink {
+  display: inline-block;
+  padding: $spacing_md $spacing_xl;
+  background-color: $color_brown;
+  color: $color_light;
+  text-decoration: none;
+  border-radius: $radius_md;
+  font-family: $font_family_main;
+  transition: $transition_normal;
+  
+  &:hover {
+    background-color: darken($color_brown, 10%);
+  }
+}
+
+// Десктопный сайдбар (показывается только на десктопе и планшете)
+.desktopSidebar {
+  display: block;
+  
+  @media (max-width: $breakpoint_tablet) {
+    display: none;
+  }
+}
+
+// Мобильные категории (показываются только на мобилке, сверху)
+.mobileCategories {
+  display: none;
+  
+  @media (max-width: $breakpoint_tablet) {
+    display: block;
+    margin-bottom: $spacing_lg;
+    
+    .widget {
+      background: $color_white_blue;
+      border-radius: $radius_md;
+      padding: $spacing_md;
+      margin-bottom: 0;
+      
+      h3 {
+        text-align: center;
+        font-size: 1.25rem;
+        margin-bottom: $spacing_md;
+      }
+      
+      .list {
+        display: flex;
+        flex-wrap: wrap;
+        gap: $spacing_sm;
+        
+        li {
+          margin-bottom: 0;
+          
+          a {
+            padding: $spacing_xs $spacing_md;
+            border-radius: $radius_md;
+            border: 1px solid rgba($color_beige, 0.5);
+            
+            &:hover {
+              transform: translateY(-2px);
+            }
+          }
+          
+          &.active a {
+            background: $color_brown;
+            color: white;
+            font-weight: 600;
+          }
+        }
+      }
+    }
+  }
+}
+
+// Мобильная подписка (показывается только на мобилке, после постов)
+.mobileOther {
+  display: none;
+  
+  @media (max-width: $breakpoint_tablet) {
+    display: block;
+    margin-top: $spacing_xl;
+    
+    .widget {
+      background: $color_white_blue;
+      border-radius: $radius_md;
+      padding: $spacing_md;
+      
+      h3 {
+        font-size: 1.25rem;
+        margin-bottom: $spacing_md;
+        text-align: center;
+      }
+      
+      // Скрываем категории в этой секции
+      &:first-child {
+        display: none;
+      }
+      
+      p {
+        text-align: center;
+        margin-bottom: $spacing_md;
+      }
+      
+      .subscribeForm {
+        max-width: 300px;
+        margin: 0 auto;
+      }
+    }
+  }
+}
+
+// Адаптивность
+@media (max-width: $breakpoint_tablet) {
+  .page {
+    padding: $spacing_lg 0;
+  }
+  
+  .title {
+    font-size: 2rem;
+  }
+  
+  .subtitle {
+    font-size: 1rem;
+  }
+  
+  .filters {
+    padding: $spacing_md;
+  }
+}
+
+@media (max-width: $breakpoint_mobile) {
+  .page {
+    padding: $spacing_md 0;
+  }
+  
+  .title {
+    font-size: 1.75rem;
+  }
+  
+  .header {
+    margin-bottom: $spacing_xl;
+  }
+  
+  .filters {
+    margin-bottom: $spacing_lg;
+  }
+  
+  .empty {
+    padding: $spacing_xl $spacing_lg;
+    
+    p {
+      font-size: 1rem;
+    }
+  }
+  
+  .backLink {
+    padding: $spacing_sm $spacing_lg;
+    font-size: 0.95rem;
+  }
+}

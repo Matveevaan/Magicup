@@ -1,0 +1,189 @@
+// frontend/components/About/GallerySection/GallerySection.module.scss
+@import '../../../public/styles/_variables.scss';
+
+.gallerySection {
+  padding: $spacing_xl 0;
+  background: $color_bg_white;
+}
+
+.container {
+  max-width: $container_desktop;
+  margin: 0 auto;
+  padding: 0 $spacing_lg;
+  
+  @media (max-width: $breakpoint_tablet) {
+    padding: 0 $spacing_md;
+  }
+  
+  @media (max-width: $breakpoint_mobile) {
+    padding: 0 $spacing_sm;
+  }
+}
+
+.galleryContainer {
+  margin-bottom: $spacing_xxl;
+  
+  &:last-child {
+    margin-bottom: 0;
+  }
+}
+
+.galleryTitle {
+  font-size: 1.75rem;
+  color: $color_brown;
+  margin-bottom: $spacing_md;
+  font-family: $font_family_main;
+  font-weight: 600;
+  text-align: center;
+}
+
+.galleryDescription {
+  font-size: 1.1rem;
+  color: $color_blue;
+  margin-bottom: $spacing_xl;
+  line-height: 1.6;
+  text-align: center;
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
+  font-family: $font_family_main;
+}
+
+.galleryGrid {
+  display: grid;
+  gap: $spacing_lg;
+  
+  /* Десктоп: 3 колонки */
+  grid-template-columns: repeat(3, 1fr);
+  
+  /* Планшет (768px-1024px): 2 колонки */
+  @media (max-width: $breakpoint_desktop) {
+    grid-template-columns: repeat(2, 1fr);
+    gap: $spacing_md;
+  }
+  
+  /* Мобильные (<768px): 1 колонка */
+  @media (max-width: $breakpoint_mobile) {
+    grid-template-columns: 1fr;
+    gap: $spacing_md;
+  }
+}
+
+.galleryItem {
+  border-radius: $radius_lg;
+  overflow: hidden;
+  box-shadow: $shadow_small;
+  transition: transform $transition_normal, box-shadow $transition_normal;
+  cursor: pointer;
+  background: $color_white_blue;
+  
+  &:hover {
+    transform: translateY(-5px);
+    box-shadow: $shadow_medium;
+    
+    .imageWrapper img {
+      transform: scale(1.05);
+    }
+  }
+}
+
+.imageWrapper {
+  width: 100%;
+  height: 240px;
+  overflow: hidden;
+  
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform $transition_normal;
+  }
+}
+
+.imageCaption {
+  padding: $spacing_md;
+  margin: 0;
+  font-size: 1rem;
+  color: $color_brown;
+  font-family: $font_family_main;
+  font-weight: 500;
+  text-align: center;
+}
+
+/* Lightbox стили - без изменений */
+.lightbox {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba($color_brown, 0.95);
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: $spacing_xl;
+}
+
+// ... остальные стили lightbox без изменений
+
+// Адаптивность
+@media (max-width: $breakpoint_tablet) {
+  .gallerySection {
+    padding: $spacing_lg 0;
+  }
+  
+  .galleryContainer {
+    margin-bottom: $spacing_xl;
+  }
+  
+  .galleryTitle {
+    font-size: 1.5rem;
+  }
+  
+  .galleryDescription {
+    font-size: 1rem;
+    margin-bottom: $spacing_lg;
+  }
+  
+  .imageWrapper {
+    height: 200px;
+  }
+  
+  .imageCaption {
+    padding: $spacing_sm;
+    font-size: 0.95rem;
+  }
+}
+
+@media (max-width: $breakpoint_mobile) {
+  .gallerySection {
+    padding: $spacing_md 0;
+  }
+  
+  .galleryContainer {
+    margin-bottom: $spacing_xl;
+  }
+  
+  .galleryTitle {
+    font-size: 1.3rem;
+  }
+  
+  .galleryDescription {
+    font-size: 0.95rem;
+    margin-bottom: $spacing_lg;
+  }
+  
+  .galleryGrid {
+    gap: $spacing_sm;
+  }
+  
+  .imageWrapper {
+    height: 180px;
+  }
+  
+  .imageCaption {
+    padding: $spacing_sm;
+    font-size: 0.9rem;
+  }
+}

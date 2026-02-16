@@ -1,0 +1,85 @@
+@import '../../../public/styles/_variables.scss';
+
+.galleryContainer {
+  width: 100%;
+  max-width: $container_desktop;
+  margin: 0 auto;
+  padding: 0 $spacing_lg;
+  
+  @media (max-width: $breakpoint_tablet) {
+    padding: 0 $spacing_md;
+  }
+  
+  @media (max-width: $breakpoint_mobile) {
+    padding: 0 $spacing_sm;
+  }
+}
+
+.galleryGrid {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: $spacing_lg;
+  
+  @media (max-width: $breakpoint_mobile) {
+    gap: $spacing_md;
+  }
+}
+
+.galleryItem {
+  width: 100%;
+  position: relative;
+  border-radius: $radius_lg;
+  overflow: hidden;
+  box-shadow: $shadow_small;
+  transition: transform $transition_normal, box-shadow $transition_normal;
+  
+  &:hover {
+    transform: translateY(-5px);
+    box-shadow: $shadow_medium;
+  }
+  
+  @media (max-width: $breakpoint_tablet) {
+    border-radius: $radius_md;
+  }
+  
+  @media (max-width: $breakpoint_mobile) {
+    border-radius: $radius_sm;
+  }
+}
+
+.imageLink,
+.imageWrapper {
+  display: block;
+  width: 100%;
+  position: relative;
+}
+
+// Изображение определяет высоту
+.image {
+  width: 100%;
+  height: auto; // Автоматическая высота
+  max-width: 100%;
+  display: block;
+  transition: transform 0.5s ease;
+  
+  // ВАЖНО: меняем медиа-запрос на 480px
+  @media (max-width: 480px) {
+    &.mobileImage {
+      width: 100%;
+      height: auto; // Фиксированная высота для мобильных
+      object-fit: cover; // Заполняем
+    }
+  }
+  
+  // Для очень маленьких экранов
+  @media (max-width: 360px) {
+    &.mobileImage {
+      height: 200px;
+    }
+  }
+}
+
+.imageLink:hover .image {
+  transform: scale(1.02);
+}
