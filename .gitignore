@@ -27,7 +27,7 @@
 # Временные файлы
 *.log
 *.tsv
-*.txt
+
 
 test_data.txt
 project_for_excel.tsv
