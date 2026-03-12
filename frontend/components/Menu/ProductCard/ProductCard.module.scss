@@ -277,6 +277,11 @@
 .variantsContainer {
   overflow: hidden;
   transition: max-height $transition_normal ease-out;
+  max-height: 0; // По умолчанию скрыт
+  
+  &.expanded {
+    max-height: calc(attr(data-variants-count number) * 40px);
+  }
 }
 
 .variantsList {

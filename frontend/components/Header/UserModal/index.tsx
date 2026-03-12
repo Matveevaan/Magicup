@@ -361,7 +361,7 @@ export default function UserModal({
                     key={index}
                     className={styles.barcodeBar}
                     style={{
-                      height: `${40 + parseInt(digit) * 4}px`,
+                      height: `${40 + parseInt(digit) * 4}px`
                     }}
                   />
                 ))}
